@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+let router = express.Router();
 const dotenv = require("dotenv");
 
 dotenv.config({ path: "./config/config.env" });

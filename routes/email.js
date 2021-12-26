@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+let router = express.Router();
 const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
 const sendGridTransport = require("nodemailer-sendgrid-transport");
