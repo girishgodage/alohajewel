@@ -15,8 +15,8 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
 const routes = require("./routes/api");
-const striperoutes = require("./routes/stripeRoute");
-const orderroutes = require("./routes/orderRoute");
+const striperoutes = require("./routes/striperoute");
+const orderroutes = require("./routes/orderroute");
 const emailroutes = require("./routes/email");
 
 // Step 3 - Connect to MongoDB
