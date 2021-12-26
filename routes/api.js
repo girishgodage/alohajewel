@@ -5,6 +5,7 @@ let router = express.Router();
 const BlogPost = require("../models/blogPost");
 const User = require("../models/User");
 const UserSession = require("../models/UserSession");
+const Order = require("../models/Order");
 
 // Blog Routes
 router.get("/", (req, res) => {
@@ -364,7 +365,6 @@ router.post("/stripe/create-checkout-session", async (req, res) => {
 });
 
 //Code for Order Routes
-const Order = require("../models/order");
 
 router.get("/order/", async (req, res) => {
   //const orders = await Order.find({}).populate("user");
