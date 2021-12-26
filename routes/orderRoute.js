@@ -38,7 +38,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
- // console.log(req.body.userId);
+  // console.log(req.body.userId);
   const newOrder = new Order({
     orderItems: req.body.orderItems,
     userId: req.body.userId,
