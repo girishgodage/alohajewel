@@ -15,10 +15,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
 const routes = require("./routes/api");
-import striperoutes from "./routes/striperoute";
-import orderroutes from "./routes/orderroute";
-
-//const striperoutes = require("./routes/striperoute.js");
+const striperoutes = require("./routes/striperoute");
 //const orderroutes = require("./routes/orderroute.js");
 // const emailroutes = require("./routes/email.js");
 
@@ -48,7 +45,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/api", routes);
 app.use("/api/stripe", striperoutes);
-app.use("/api/order", orderroutes);
+//app.use("/api/order", orderroutes);
 // app.use("/api/email", emailroutes);
 
 //step 4
