@@ -62,8 +62,7 @@ class Orders extends Component {
     this.fetchData();
   }
   clickHandler = (order) => {
-    const updateOrderurl =
-      "http://localhost:3000/api/order/deliver/" + order._id;
+    const updateOrderurl = "/api/order/deliver/" + order._id;
     fetch(updateOrderurl, {
       method: "PUT",
       headers: {
