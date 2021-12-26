@@ -225,13 +225,13 @@ export default class SingleProduct extends Component {
                                   className="button cart_button"
                                   id="addToCart"
                                 >
-                                  <a
+                                  <button
                                     onClick={() => {
                                       value.addToCart(id);
                                     }}
                                   >
                                     add to cart
-                                  </a>
+                                  </button>
                                 </div>
                               );
                             }}

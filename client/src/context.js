@@ -78,7 +78,7 @@ class ProductProvider extends Component {
 
   getProduct = (id) => {
     let tempProducts = [...this.state.products];
-    const product = tempProducts.find((product) => product.id == id);
+    const product = tempProducts.find((product) => product.id === id);
     return product;
   };
 
@@ -225,12 +225,12 @@ class ProductProvider extends Component {
     const ids = [...new Set(cart.map((obj) => obj.id))];
     let sortedCart = [];
     ids.map((id) => {
-      const length = cart.filter((product) => product.id == id).length;
-      const result = cart.find((product) => product.id == id);
+      const length = cart.filter((product) => product.id === id).length;
+      const result = cart.find((product) => product.id === id);
       if (length >= 1) {
         result.count = length;
       }
-      sortedCart.push(result);
+      return sortedCart.push(result);
     });
     this.setState({
       sortedCart: sortedCart,
