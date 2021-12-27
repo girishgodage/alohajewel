@@ -2,7 +2,8 @@ const express = require("express");
 let router = express.Router();
 const dotenv = require("dotenv");
 
-dotenv.config({ path: "./config/config.env" });
+dotenv.config();
+//dotenv.config({ path: "./config/config.env" });
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 

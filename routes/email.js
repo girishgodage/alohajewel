@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
 const sendGridTransport = require("nodemailer-sendgrid-transport");
 
-dotenv.config({ path: "./config/config.env" });
+dotenv.config();
+//dotenv.config({ path: "./config/config.env" });
 
 const transporter = nodemailer.createTransport(
   sendGridTransport({

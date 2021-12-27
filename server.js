@@ -6,7 +6,8 @@ const path = require("path");
 const connectDB = require("./config/db");
 
 // Load config
-dotenv.config({ path: "./config/config.env" });
+dotenv.config();
+//dotenv.config({ path: "./config/config.env" });
 
 // step 2 - Initialize Express & cors
 const app = express();
