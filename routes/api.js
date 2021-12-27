@@ -353,7 +353,6 @@ router.post("/stripe/create-checkout-session", async (req, res) => {
           quantity: item.quantity,
         };
       }),
-
       success_url: `${process.env.CLIENT_URL}/success`,
       cancel_url: `${process.env.CLIENT_URL}/canceled`,
     });
