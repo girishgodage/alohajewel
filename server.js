@@ -32,7 +32,6 @@ const clienturl =
     ? process.env.CLIENT_URL
     : "http://localhost:3001";
 
-console.log(clienturl);
 app.use(
   cors({
     origin: clienturl,

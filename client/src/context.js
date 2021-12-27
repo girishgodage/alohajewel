@@ -467,6 +467,32 @@ class ProductProvider extends Component {
     }
   };
 
+  sendMailtoCustomer = (subject, message) => {
+    let obj = getFromStorage("jewelry_app");
+
+    if (obj && obj.token) {
+      const name = obj.firstName + " " + obj.lastName;
+      const email = obj.email;
+
+      fetch("/api/email/customer/send", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message,
+        }),
+      })
+        .then((res) => res.json())
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   placeOrder = (addInfo) => {
     const tempItemsInCart = this.state.sortedCart;
 
@@ -547,6 +573,14 @@ class ProductProvider extends Component {
               orderId: json.orderId,
               payerId: json.payerId,
             });
+            const subject = "Your Order is Placed, Order no - " + json.orderId;
+            const message =
+              "Your Order Id" +
+              json.orderId +
+              " has been placed successfully." +
+              `<br/>` +
+              "Thank you for shopping with us";
+            this.sendMailtoCustomer(subject, message);
           }
         })
         .then(this.checkout())
@@ -646,6 +680,7 @@ class ProductProvider extends Component {
           checkSignIn: this.checkSignIn,
           checkout: this.checkout,
           placeOrder: this.placeOrder,
+          sendMailtoCustomer: this.sendMailtoCustomer,
         }}
       >
         {this.props.children}

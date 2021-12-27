@@ -7,6 +7,37 @@ const User = require("../models/User");
 const UserSession = require("../models/UserSession");
 const Order = require("../models/Order");
 
+//Setting for email
+const nodemailer = require("nodemailer");
+const sendGridTransport = require("nodemailer-sendgrid-transport");
+
+const transporter = nodemailer.createTransport(
+  sendGridTransport({
+    auth: {
+      api_key: process.env.SENDGRID_API,
+    },
+  })
+);
+
+router.post("/email/customer/send", (req, res) => {
+  const { name, email, message, subject } = req.body;
+  transporter
+    .sendMail({
+      to: email,
+      from: process.env.EMAIL_ID,
+      subject: subject,
+      html: `<h3>Hi ${name}</h3> <br/>
+        <p>${message}</p>`,
+    })
+    .then((resp) => {
+      console.log(resp);
+      res.json({ resp });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // Blog Routes
 router.get("/", (req, res) => {
   BlogPost.find({})
