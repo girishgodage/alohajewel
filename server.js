@@ -27,17 +27,17 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// const clienturl =
-//   process.env.NODE_ENV === "production"
-//     ? process.env.CLIENT_URL
-//     : "http://localhost:3001";
+const clienturl =
+  process.env.NODE_ENV === "production"
+    ? process.env.CLIENT_URL
+    : "http://localhost:3001";
 
-// console.log(clienturl);
-// app.use(
-//   cors({
-//     origin: clienturl,
-//   })
-// );
+console.log(clienturl);
+app.use(
+  cors({
+    origin: clienturl,
+  })
+);
 
 // Logging
 if (process.env.NODE_ENV === "development") {
