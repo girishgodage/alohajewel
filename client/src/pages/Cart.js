@@ -10,10 +10,10 @@ export default class Cart extends Component {
     const value = this.context;
     const loading = value.loading;
     const products = value.sortedCart;
-    const shipping = 5;
+    const shipping = process.env.REACT_APP_SHIPPING_AMT;
     const cartSubtotal = value.cartSubtotal;
     const cartTax = value.cartTax;
-    const cartTotal = value.cartTotal + shipping;
+    const cartTotal = parseFloat(value.cartTotal + shipping).toFixed(2);
     const clearCart = value.clearCart;
 
     return (

@@ -107,6 +107,13 @@ export default class SingleProduct extends Component {
                         <div
                           className="product_image_thumbnail"
                           style={{
+                            backgroundImage: `url(${product.images[1]})`,
+                          }}
+                          data-image={product.images[1]}
+                        ></div>
+                        <div
+                          className="product_image_thumbnail"
+                          style={{
                             backgroundImage: `url(${product.images[2]})`,
                           }}
                           data-image={product.images[2]}
@@ -137,6 +144,24 @@ export default class SingleProduct extends Component {
                       <div className="in_stock_container">
                         <div className="in_stock in_stock_true"></div>
                         <span>in stock</span>
+                        <ProductConsumer>
+                          {(value) => {
+                            return (
+                              <div
+                                className="button cart_button"
+                                id="addToCart"
+                              >
+                                <a
+                                  onClick={() => {
+                                    value.addToCart(id);
+                                  }}
+                                >
+                                  add to cart
+                                </a>
+                              </div>
+                            );
+                          }}
+                        </ProductConsumer>
                       </div>
                       {product.ar ? (
                         <div className="ar_btn_container">

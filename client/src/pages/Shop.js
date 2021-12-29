@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ContactBackground from "../assets/home/bg1-1.jpg";
 import ProductContainer from "../components/App/ProductContainer";
 import { useContext } from "react";
 import { ProductContext } from "../context";
+import manifyingGlass from "../assets/images/magnifying-glass.svg";
 
 export const Shop = () => {
   const context = useContext(ProductContext);
@@ -11,7 +12,11 @@ export const Shop = () => {
   const clearFilter = context.clearFilter;
   const sortByPrice = context.sortByPrice;
   const sortByRating = context.sortByRating;
-  
+  const getAllCategory = context.getAllCategory;
+  const [search, setSearch] = useState("");
+
+  let categories = getAllCategory();
+
   return (
     <div>
       <div
@@ -46,42 +51,57 @@ export const Shop = () => {
                 <div className="sidebar_section">
                   <div className="sidebar_title">Categories</div>
                   <div className="sidebar_section_content">
-                    <ul>
-                      <li>
-                        <input
-                          type="button"
-                          className="category_filter"
-                          onClick={handleChange}
-                          name="bracelet"
-                          value="Bracelet"
-                        />
-                      </li>
-                      <li>
-                        <input
-                          type="button"
-                          className="category_filter"
-                          onClick={handleChange}
-                          name="ring"
-                          value="Ring"
-                        />
-                      </li>
-                      <li>
-                        <input
-                          type="button"
-                          className="category_filter"
-                          onClick={handleChange}
-                          name="earring"
-                          value="Earring"
-                        />
-                      </li>
+                    <ul className="inline">
+                      {categories.map((category) => {
+                        return (
+                          <li>
+                            <input
+                              type="button"
+                              className="category_filter"
+                              onClick={handleChange}
+                              name={category}
+                              value={category}
+                            />
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
 
                 <div className="sidebar_section">
-                  <div className="sidebar_title">Stars</div>
+                  <div className="sidebar_title">Search</div>
+                  <div>
+                    <ProductContext>
+                      {(value) => {
+                        function SearchData(e) {
+                          e.preventDefault();
+                          value.searchData(search);
+                          setSearch("");
+                        }
+                        return (
+                          <form onSubmit={SearchData}>
+                            <input
+                              type="search"
+                              className="search_input"
+                              required="required"
+                              value={search}
+                              onChange={(e) => setSearch(e.target.value)}
+                            />
+                            <button
+                              type="submit"
+                              id="search_button"
+                              className="search_button"
+                            >
+                              <img src={manifyingGlass} alt="" />
+                            </button>
+                          </form>
+                        );
+                      }}
+                    </ProductContext>
+                  </div>
                   <div className="sidebar_section_content">
-                    <ul>
+                    {/* <ul className="inline">
                       <li>
                         <div
                           className="rating_5 raStar_5"
@@ -115,7 +135,7 @@ export const Shop = () => {
                           value="Other"
                         />
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                 </div>
               </div>

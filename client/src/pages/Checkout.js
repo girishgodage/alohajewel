@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ContactBackground from "../assets/home/contact.jpg";
 import { ProductConsumer } from "../context";
@@ -15,11 +15,12 @@ export const Checkout = () => {
   // useEffect(() => {
   //   if (window.Stripe) setStripe(window.Stripe(stripeToken));
   // }, [stripeToken]);
+  const [busy, setBusy] = useState(false);
 
   const formOrder = () => {
-    console.log("Callback function when form is submitted!");
-    console.log("Form Values ", values);
+    setBusy(true);
     placeOrder(values);
+    setBusy(false);
     //checkout();
   };
 
@@ -64,10 +65,10 @@ export const Checkout = () => {
               // let products = sortCart(cart);
               const products = value.sortedCart;
 
-              const shipping = 5;
+              const shipping = process.env.REACT_APP_SHIPPING_AMT;
               let cartSubtotal = value.cartSubtotal;
               let cartTax = value.cartTax;
-              let cartTotal = value.cartTotal + shipping;
+              let cartTotal = parseFloat(value.cartTotal + shipping).toFixed(2);
               const firstName = value.firstName;
               const lastName = value.lastName;
               const email = value.email;
@@ -311,7 +312,14 @@ export const Checkout = () => {
                                 className="cart_total_button"
                                 // onClick={() => formOrder()}
                               >
-                                place order
+                                {busy && (
+                                  <i
+                                    className="fa fa-refresh fa-spin"
+                                    style={{ marginRight: "5px" }}
+                                  />
+                                )}
+                                {busy && <span>Placing Order</span>}
+                                {!busy && <span>place order</span>}
                               </button>
                             ) : (
                               <>

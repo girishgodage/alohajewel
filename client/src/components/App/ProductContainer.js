@@ -11,12 +11,13 @@ export default class ProductContainer extends Component {
     let loading = value.loading;
     //let products = value.products;
     let filteredProducts = value.filteredProducts;
+
     var query = window.location.search.substring(1);
     console.log(query);
 
     if (query.length > 0) {
       filteredProducts = value.filteredProducts.filter(
-        (product) => product.category === query
+        (product) => product.category.toLowerCase() === query.toLowerCase()
       );
     }
 

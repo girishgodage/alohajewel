@@ -82,6 +82,26 @@ class ProductProvider extends Component {
     return product;
   };
 
+  getAllCategory = () => {
+    let tempProducts = [...this.state.products];
+    const categories = [
+      ...new Set(tempProducts.map((product) => product.category)),
+    ];
+    const uniqueCategories = categories.filter((category) => category !== "");
+
+    return uniqueCategories;
+  };
+
+  searchData = (query) => {
+    let tempProducts = [...this.state.products];
+    let filteredProducts = tempProducts.filter((product) => {
+      return product.name.toLowerCase().includes(query.toLowerCase());
+    });
+    this.setState({
+      filteredProducts: filteredProducts,
+    });
+  };
+
   handleChange = (event) => {
     var name = event.target.name;
     // var value = event.target.value;
@@ -114,47 +134,21 @@ class ProductProvider extends Component {
       );
     } else {
       // category
-      switch (name) {
-        case "bracelet":
-          this.setState(
-            {
-              bracelet: true,
-              ring: false,
-              earring: false,
-            },
-            this.filterProduct
-          );
-          break;
-        case "ring":
-          this.setState(
-            {
-              bracelet: false,
-              ring: true,
-              earring: false,
-            },
-            this.filterProduct
-          );
-          break;
-        case "earring":
-          this.setState(
-            {
-              bracelet: false,
-              ring: false,
-              earring: true,
-            },
-            this.filterProduct
-          );
-          break;
-        default:
-      }
+      this.setState(
+        {
+          isCatFilter: true,
+          categoryVal: event.target.value,
+        },
+        this.filterProduct
+      );
     }
   };
 
   filterProduct = () => {
     let tempProducts = this.state.products;
-    let bracelet = this.state.bracelet;
-    let ring = this.state.ring;
-    let earring = this.state.earring;
+    let isCatFilter = this.state.isCatFilter;
+    let categoryVal = this.state.categoryVal;
+
     let rating = this.state.rating;
 
     if (rating === 5) {
@@ -165,21 +159,22 @@ class ProductProvider extends Component {
       tempProducts = tempProducts.filter((product) => product.rating < 4);
     }
 
-    if (bracelet) {
+    if (isCatFilter) {
       tempProducts = tempProducts.filter(
-        (product) => product.category === "Bracelet"
+        (product) =>
+          product.category.toLowerCase() === categoryVal.toLowerCase()
       );
     }
-    if (ring) {
-      tempProducts = tempProducts.filter(
-        (product) => product.category === "Ring"
-      );
-    }
-    if (earring) {
-      tempProducts = tempProducts.filter(
-        (product) => product.category === "Earring"
-      );
-    }
+    // if (ring) {
+    //   tempProducts = tempProducts.filter(
+    //     (product) => product.category === "Ring"
+    //   );
+    // }
+    // if (earring) {
+    //   tempProducts = tempProducts.filter(
+    //     (product) => product.category === "Earring"
+    //   );
+    // }
     // return tempProducts;
     this.setState({
       filteredProducts: tempProducts,
@@ -323,9 +318,9 @@ class ProductProvider extends Component {
   addTotals = () => {
     let subTotal = 0;
     this.state.cart.map((item) => (subTotal += item.total));
-    const tempTax = subTotal * 0.13;
+    const tempTax = subTotal * (process.env.REACT_APP_TAX_PECENT / 100);
     const tax = parseFloat(tempTax.toFixed(2));
-    const total = subTotal + tax;
+    const total = parseFloat(subTotal + tax).toFixed(2);
     this.setState(() => {
       return {
         cartSubtotal: subTotal,
@@ -525,9 +520,9 @@ class ProductProvider extends Component {
 
       let subTotal = 0;
       tempItemsInCart.map((item) => (subTotal += item.price * item.count));
-      const tempTax = subTotal * 0.13;
+      const tempTax = subTotal * (process.env.REACT_APP_TAX_PECENT / 100);
       const tax = parseFloat(tempTax.toFixed(2));
-      const ship = 5;
+      const ship = process.env.REACT_APP_SHIPPING_AMT;
 
       let cartSubtotal = subTotal;
       let cartTax = tax;
@@ -575,7 +570,7 @@ class ProductProvider extends Component {
             });
             const subject = "Your Order is Placed, Order no - " + json.orderId;
             const message =
-              "Your Order Id" +
+              "Your Order no - " +
               json.orderId +
               " has been placed successfully." +
               `<br/>` +
@@ -605,9 +600,9 @@ class ProductProvider extends Component {
 
     let subTotal = 0;
     items.map((item) => (subTotal += item.price * item.quantity));
-    const tempTax = subTotal * 0.13;
+    const tempTax = subTotal * (process.env.REACT_APP_TAX_PECENT / 100);
     const tax = parseFloat(tempTax.toFixed(2));
-    const ship = 5;
+    const ship = process.env.REACT_APP_SHIPPING_AMT;
 
     this.setState(
       {
@@ -670,6 +665,7 @@ class ProductProvider extends Component {
           clearFilter: this.clearFilter,
           sortByPrice: this.sortByPrice,
           sortByRating: this.sortByRating,
+          searchData: this.searchData,
           handleChange: this.handleChange,
           addToCart: this.addToCart,
           receiveCartItem: this.receiveCartItem,
@@ -681,6 +677,7 @@ class ProductProvider extends Component {
           checkout: this.checkout,
           placeOrder: this.placeOrder,
           sendMailtoCustomer: this.sendMailtoCustomer,
+          getAllCategory: this.getAllCategory,
         }}
       >
         {this.props.children}

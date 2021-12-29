@@ -39,7 +39,7 @@ const PaySuccess = () => {
           const message =
             "Thank you for payment of your Order no -" +
             orderId +
-            ". You Order will be in process of the delivery" +
+            ". Your order will be in process." +
             `<br/>` +
             "Thank you for shopping with us";
           sendMailtoCustomer(subject, message);

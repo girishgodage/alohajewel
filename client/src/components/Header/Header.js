@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import manifyingGlass from "../../assets/images/magnifying-glass.svg";
+
 import shoppingBag from "../../assets/images/shopping-bag.svg";
 import avatar from "../../assets/images/avatar.svg";
 import { ProductConsumer } from "../../context";
@@ -8,13 +8,6 @@ import { ProductConsumer } from "../../context";
 import Menu from "./Menu";
 
 export const Header = () => {
-  const [search, setSearch] = useState("");
-
-  function SearchData(e) {
-    e.preventDefault();
-    window.location.href = "/shop?" + search;
-  }
-
   return (
     <>
       <header className="header">
@@ -36,24 +29,6 @@ export const Header = () => {
             </ul>
           </nav>
           <div className="header_content ml-auto">
-            <div className="search header_search">
-              <form action="#" onSubmit={SearchData}>
-                <input
-                  type="search"
-                  className="search_input"
-                  required="required"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <button
-                  type="submit"
-                  id="search_button"
-                  className="search_button"
-                >
-                  <img src={manifyingGlass} alt="" />
-                </button>
-              </form>
-            </div>
             <div className="shopping">
               <Link to="/cart">
                 <div className="cart">

@@ -11,7 +11,7 @@ export const Product = ({ product }) => {
           <div className="product_image">
             {/* <a href={`/${product.id}`}><img src={product.images[3].fields.file.url} alt={product.name} /></a> */}
             <Link to={`/shop/:${product.id}`}>
-              <img src={product.images[1]} alt={product.name} />
+              <img src={product.images[0]} alt={product.name} />
             </Link>
           </div>
           <div
