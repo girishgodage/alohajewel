@@ -462,6 +462,26 @@ class ProductProvider extends Component {
     }
   };
 
+  sendSMStoCustomer = (phoneNumber, message) => {
+    const obj = getFromStorage("jewelry_app");
+    if (obj && obj.token) {
+      fetch("/api/sms/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          phoneNumber: phoneNumber,
+          message: message,
+        }),
+      })
+        .then((res) => res.json())
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   sendMailtoCustomer = (subject, message) => {
     let obj = getFromStorage("jewelry_app");
 
@@ -576,6 +596,7 @@ class ProductProvider extends Component {
               `<br/>` +
               "Thank you for shopping with us";
             this.sendMailtoCustomer(subject, message);
+            // this.sendSMStoCustomer(contactNumber, subject);
           }
         })
         .then(this.checkout())

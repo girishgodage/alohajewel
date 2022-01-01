@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-    },
+  },
   "author": "Girish Godage",
   "license": "MIT",
   "dependencies": {
@@ -24,7 +24,8 @@
     "nodemailer": "^6.7.2",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "react-router-dom": "^6.0.2",
-    "stripe": "^8.191.0"
+    "stripe": "^8.191.0",
+    "twilio": "^3.72.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

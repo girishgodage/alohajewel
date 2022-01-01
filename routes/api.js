@@ -1,6 +1,7 @@
 const express = require("express");
 
 let router = express.Router();
+const twilio = require("twilio");
 
 const BlogPost = require("../models/blogPost");
 const User = require("../models/User");
@@ -36,6 +37,25 @@ router.post("/email/customer/send", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+router.post("/sms/send", (req, res) => {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const client = new twilio(accountSid, authToken);
+  const { phoneNumber, message } = req.body;
+  console.log(phoneNumber, message);
+  client.messages
+    .create({
+      body: message,
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: phoneNumber,
+    })
+    .then((message) => {
+      console.log(message);
+      console.log(message.sid);
+    });
+  res.json({ message: "SMS Message sent" });
 });
 
 // Blog Routes
