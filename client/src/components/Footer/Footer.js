@@ -7,7 +7,7 @@ export const Footer = () => (
       <div className="row">
         <div className="col text-center">
           <div className="footer_logo">
-            <Link to="/">Aloha Jewel</Link>
+            <Link to="/">Aloha Jewels</Link>
           </div>
           <nav className="footer_nav">
             <ul>

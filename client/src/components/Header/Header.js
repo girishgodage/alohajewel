@@ -13,7 +13,7 @@ export const Header = () => {
       <header className="header">
         <div className="header_inner d-flex flex-row align-items-center justify-content-start">
           <div className="logo">
-            <Link to="/">Aloha Jewel</Link>
+            <Link to="/">Aloha Jewels</Link>
           </div>
           <nav className="main_nav">
             <ul>

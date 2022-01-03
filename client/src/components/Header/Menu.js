@@ -13,7 +13,7 @@ export const Menu = () => {
         </div>
       </div>
       <div className="logo menu_mm">
-        <a href="/">Aloha Jewel</a>
+        <a href="/">Aloha Jewels</a>
       </div>
       <div className="search">
         {/* <form action="#">
