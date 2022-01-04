@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotFound from "../components/App/NotFound";
+import { GlassMagnifier } from "react-image-magnifiers";
 import { ProductConsumer, ProductContext } from "../context";
 import ContactBackground from "../assets/home/bg4-1.jpg";
 import "../utils/custom";
@@ -11,6 +12,11 @@ export default class SingleProduct extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
+      allowOverflow: true,
+      magnifierBorderSize: 5,
+      magnifierBorderColor: "rgba(255, 255, 255, .5)",
+      magnifierSize: "30%",
+      square: false,
     };
   }
   static contextType = ProductContext;
@@ -38,6 +44,14 @@ export default class SingleProduct extends Component {
         </div>
       );
     }
+    const {
+      allowOverflow,
+      magnifierSize,
+      magnifierBorderSize,
+      magnifierBorderColor,
+      square,
+    } = this.state;
+
     // const { name, slug, description, capacity, price, dance, fitness, images, inCart } = room;
     // const [mainImg, ...defaultImg] = images;
     return (
@@ -92,9 +106,19 @@ export default class SingleProduct extends Component {
 
                 <div className="row product_row">
                   <div className="col-lg-7">
-                    <div className="product_image">
+                    <div>
                       <div className="product_image_large">
-                        <img src={product.images[0]} alt={product.name} />
+                        {/* <img src={product.images[0]} alt={product.name} /> */}
+                        <GlassMagnifier
+                          className="input-position"
+                          imageSrc={product.images[0]}
+                          // largeImageSrc={product.images[0]}
+                          allowOverflow={allowOverflow}
+                          magnifierSize={magnifierSize}
+                          magnifierBorderSize={magnifierBorderSize}
+                          magnifierBorderColor={magnifierBorderColor}
+                          square={square}
+                        />
                       </div>
                       <div className="product_image_thumbnails d-flex flex-row align-items-start justify-content-start">
                         <div
