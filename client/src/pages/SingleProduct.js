@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotFound from "../components/App/NotFound";
-import { GlassMagnifier } from "react-image-magnifiers";
+import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
 import { ProductConsumer, ProductContext } from "../context";
 import ContactBackground from "../assets/home/bg4-1.jpg";
 import "../utils/custom";
@@ -17,6 +17,16 @@ export default class SingleProduct extends Component {
       magnifierBorderColor: "rgba(255, 255, 255, .5)",
       magnifierSize: "30%",
       square: false,
+
+      alwaysInPlace: false,
+      overlayOpacity: 0.6,
+      switchSides: false,
+      fillAvailableSpace: false,
+      fillAlignTop: false,
+      fillGapLeft: 0,
+      fillGapRight: 10,
+      fillGapTop: 10,
+      fillGapBottom: 10,
     };
   }
   static contextType = ProductContext;
@@ -50,6 +60,15 @@ export default class SingleProduct extends Component {
       magnifierBorderSize,
       magnifierBorderColor,
       square,
+      alwaysInPlace,
+      overlayOpacity,
+      switchSides,
+      fillAvailableSpace,
+      fillAlignTop,
+      fillGapLeft,
+      fillGapRight,
+      fillGapTop,
+      fillGapBottom,
     } = this.state;
 
     // const { name, slug, description, capacity, price, dance, fitness, images, inCart } = room;
@@ -119,6 +138,25 @@ export default class SingleProduct extends Component {
                           magnifierBorderColor={magnifierBorderColor}
                           square={square}
                         />
+                        {/* <SideBySideMagnifier
+                          className="input-position"
+                          style={{ order: switchSides ? "1" : "0" }}
+                          imageSrc={product.images[0]}
+                          largeImageSrc={product.images[0]}
+                          alwaysInPlace={alwaysInPlace}
+                          overlayOpacity={overlayOpacity}
+                          switchSides={switchSides}
+                          zoomPosition="left"
+                          inPlaceMinBreakpoint={641}
+                          fillAvailableSpace={fillAvailableSpace}
+                          fillAlignTop={fillAlignTop}
+                          fillGapTop={fillGapTop}
+                          fillGapRight={fillGapRight}
+                          fillGapBottom={fillGapBottom}
+                          fillGapLeft={fillGapLeft}
+                          zoomContainerBorder="1px solid #ccc"
+                          zoomContainerBoxShadow="0 4px 8px rgba(0,0,0,.5)"
+                        /> */}
                       </div>
                       <div className="product_image_thumbnails d-flex flex-row align-items-start justify-content-start">
                         <div
