@@ -171,14 +171,14 @@ export const Contact = () => {
                         <img src={contact2} alt="" />
                       </div>
                       <div className="contact_info_text">
-                        office@yourbusiness.com
+                        alhojewelry@gmail.com
                       </div>
                     </li>
                     <li>
                       <div className="contact_info_icon">
                         <img src={contact3} alt="" />
                       </div>
-                      <div className="contact_info_text">+45 7703 29293 34</div>
+                      <div className="contact_info_text">+91 9137372273</div>
                     </li>
                   </ul>
                 </div>
