@@ -7,7 +7,9 @@ export const Footer = () => (
       <div className="row">
         <div className="col text-center">
           <div className="footer_logo">
-            <Link to="/">Aloha Jewels</Link>
+            <Link to="/">
+              <img src="/icon.png" width="65" height="65" /> Aloha Jewels
+            </Link>
           </div>
           <nav className="footer_nav">
             <ul>
