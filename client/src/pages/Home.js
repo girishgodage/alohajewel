@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import Background1 from "../assets/home/bg8.png";
 import { Link } from "react-router-dom";
+import SimpleImageSlider from "react-simple-image-slider";
+
 import ring4 from "../assets/product/ring/1/4.jpg";
 import bracelet4 from "../assets/product/bracelet/1/4.jpg";
 import earing4 from "../assets/product/earring/1/4.jpg";
 import NewArrival from "../components/App/NewArrival";
+import slide1 from "../assets/product/slider/1.jpg";
+import slide2 from "../assets/product/slider/2.jpg";
+import slide3 from "../assets/product/slider/3.jpg";
+import slide4 from "../assets/product/slider/4.jpg";
+import slide5 from "../assets/product/slider/5.jpg";
+import slide6 from "../assets/product/slider/6.jpg";
+import slide7 from "../assets/product/slider/7.jpg";
+import slide8 from "../assets/product/slider/8.jpg";
+import slide9 from "../assets/product/slider/9.jpg";
+import slide10 from "../assets/product/slider/10.jpg";
+
+const images = [
+  { url: slide1 },
+  { url: slide2 },
+  { url: slide3 },
+  { url: slide4 },
+  { url: slide5 },
+  { url: slide6 },
+  { url: slide7 },
+  { url: slide8 },
+  { url: slide9 },
+  { url: slide10 },
+];
 
 export const Home = () => {
   return (
@@ -12,14 +37,35 @@ export const Home = () => {
       <div className="home">
         <div
           className="home_slider_background"
-          style={{ backgroundImage: `url(${Background1})` }}
-        ></div>
+          // style={{ backgroundImage: `url(${Background1})` }}
+        >
+          <div>
+            <SimpleImageSlider
+              style={{ margin: "0 auto", marginTop: "50px" }}
+              width={1380}
+              height={870}
+              images={images}
+              showBullets={true}
+              showNavs={true}
+              loop={true}
+              autoPlay={true}
+              autoPlayDelay={2}
+              startIndex={0}
+              useGPURender={true}
+              navStyle={1}
+              navSize={50}
+              navMargin={30}
+              slideDuration={0.5}
+            />
+          </div>
+        </div>
 
         <div className="home_slider_content">
           <div className="home_slider_content_inner">
             <div className="home_slider_subtitle">New Collection</div>
-            <div className="home_slider_title">Make Hearts Fly</div>
+            <div className="home_slider_title">Where Love Begins</div>
           </div>
+
           <div className="btn_container">
             <Link to="/shop">
               <div className="btn">Shop now</div>
