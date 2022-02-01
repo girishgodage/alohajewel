@@ -37,10 +37,22 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/home" component={Home} />
+        <Route
+          exact
+          path="/home"
+          render={() => (!isAuth() ? <Redirect to="/login" /> : <Home />)}
+        />
         <Route exact path="/blog" component={Blog} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/shop" component={Shop} />
+        <Route
+          exact
+          path="/contact"
+          render={() => (!isAuth() ? <Redirect to="/login" /> : <Contact />)}
+        />
+        <Route
+          exact
+          path="/shop"
+          render={() => (!isAuth() ? <Redirect to="/login" /> : <Shop />)}
+        />
         <Route exact path="/shop/:id" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/order" component={Orders} />
