@@ -3,6 +3,8 @@ import Background1 from "../assets/home/bg8.png";
 import { Link } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 
+import useWindowDimensions from "../hooks/useWindowDimensions";
+
 import ring4 from "../assets/product/ring/1/4.jpg";
 import bracelet4 from "../assets/product/bracelet/1/4.jpg";
 import earing4 from "../assets/product/earring/1/4.jpg";
@@ -32,6 +34,10 @@ const images = [
 ];
 
 export const Home = () => {
+  const { height, width } = useWindowDimensions();
+
+  console.log(height, width);
+
   return (
     <div>
       <div className="home">
@@ -41,9 +47,12 @@ export const Home = () => {
         >
           <div>
             <SimpleImageSlider
-              style={{ margin: "0 auto", marginTop: "50px" }}
-              width={1380}
-              height={870}
+              style={{
+                margin: "0 auto",
+                marginTop: "50px",
+              }}
+              width={width * 0.8}
+              height={width * 0.5}
               images={images}
               showBullets={true}
               showNavs={true}
