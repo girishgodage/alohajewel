@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Background1 from "../assets/home/bg8.png";
 import { Link } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
+import { isMobile } from "react-device-detect";
 
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
@@ -54,7 +55,7 @@ export const Home = () => {
                 marginTop: "50px",
               }}
               width={width * 0.8}
-              height={width * 0.5}
+              height={isMobile ? width * 0.5 : width * 0.5}
               images={images}
               showBullets={true}
               showNavs={true}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import shoppingBag from "../../assets/images/shopping-bag.svg";
 import avatar from "../../assets/images/avatar.svg";
 import { ProductConsumer } from "../../context";
+import { isMobile } from "react-device-detect";
 
 import Menu from "./Menu";
 
@@ -14,7 +15,8 @@ export const Header = () => {
         <div className="header_inner d-flex flex-row align-items-center justify-content-start">
           <div className="logo">
             <Link to="/">
-              <img src="/icon.png" width="50" height="50" /> Aloha Jewels
+              <img src="/icon.png" width="50" height="50" />
+              {isMobile ? " AJ" : " Aloha Jewels"}
             </Link>
           </div>
           <nav className="main_nav">
