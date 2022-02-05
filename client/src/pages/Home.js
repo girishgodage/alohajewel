@@ -5,9 +5,11 @@ import SimpleImageSlider from "react-simple-image-slider";
 
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
-import ring4 from "../assets/product/ring/1/4.jpg";
-import bracelet4 from "../assets/product/bracelet/1/4.jpg";
-import earing4 from "../assets/product/earring/1/4.jpg";
+import bridal1 from "../assets/product/bridal/1.jpeg";
+import necklace1 from "../assets/product/necklace/1.jpeg";
+import bracelet1 from "../assets/product/bracelet/1.jpeg";
+import earing1 from "../assets/product/earring/1.jpeg";
+
 import NewArrival from "../components/App/NewArrival";
 import slide1 from "../assets/product/slider/1.jpg";
 import slide2 from "../assets/product/slider/2.jpg";
@@ -93,40 +95,52 @@ export const Home = () => {
             </div>
           </div>
           <div className="row promo_container">
-            <div className="col-md-4 promo_col">
+            <div className="col-md-3 promo_col">
               <div className="promo_item">
                 <div className="promo_image">
-                  <img src={ring4} alt="" />
+                  <img src={bridal1} alt="" />
                 </div>
                 <div className="promo_link">
                   <Link to="/shop" name="ring">
-                    Ring
+                    Jewellery / Bridal Set
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3 promo_col">
+              <div className="promo_item">
+                <div className="promo_image">
+                  <img src={necklace1} alt="" />
+                </div>
+                <div className="promo_link">
+                  <Link to="/shop" name="ring">
+                    Necklace Set
                   </Link>
                 </div>
               </div>
             </div>
 
-            <div className="col-md-4 promo_col">
+            <div className="col-md-3 promo_col">
               <div className="promo_item">
                 <div className="promo_image">
-                  <img src={bracelet4} alt="" />
+                  <img src={bracelet1} alt="" />
                 </div>
                 <div className="promo_link">
                   <Link to="/shop" name="bracelet">
-                    Bracelet
+                    Bracelets / Bangales
                   </Link>
                 </div>
               </div>
             </div>
 
-            <div className="col-md-4 promo_col">
+            <div className="col-md-3 promo_col">
               <div className="promo_item">
                 <div className="promo_image">
-                  <img src={earing4} alt="" />
+                  <img src={earing1} alt="" />
                 </div>
                 <div className="promo_link">
                   <Link to="/shop" name="earring">
-                    Earring
+                    Earings /Studs
                   </Link>
                 </div>
               </div>

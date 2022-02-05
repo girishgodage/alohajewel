@@ -239,7 +239,7 @@ router.post("/account/signin", (req, res, next) => {
           lastName: user.lastName,
           email: user.email,
           isAdmin: user.isAdmin,
-          cart: [],
+          cart: user.cart,
         });
       });
     }
