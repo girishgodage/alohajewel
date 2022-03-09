@@ -189,8 +189,8 @@ export const Home = () => {
                       className="test_content"
                       style={{ textAlign: "center" }}
                     >
-                      <div className="test_name">Shaila & Sanjay Gawane</div>
-                      <div className="test_title">Funders of Aloha Jewel </div>
+                      {/* <div className="test_name">Shaila & Sanjay Gawane</div>
+                      <div className="test_title">Funders of Aloha Jewel </div> */}
                     </div>
                   </div>
                 </div>
